@@ -48,6 +48,8 @@ No alternative beats the current multi-league model consistently: SMAT-only and 
 
 A separate five-fold SMAT comparison of logistic regression, random forest, extra trees, and histogram gradient boosting also did not support a model swap: top-10 precision means were 58%, 50%, 58%, and 52%, respectively. Extra trees reached 7/10 on the 2021/22 fold but only 4/10 on the latest fold; logistic regression reached 5/10 latest. Fold-level scores are reproducible with `python3 benchmark_models.py`. These experiments reinforce that a model family change does not solve the sparse and indirect target problem.
 
+The candidate intake was tightened for the challenge workflow: the dashboard now excludes capped or unknown-cap-status rows unless the source explicitly verifies an uncapped player, requires a usable age/DOB for ranking, shows the data season in the shortlist/export, and counts cap-status rejections. This improves eligibility hygiene; it is not a measured increase in predictive hit rate. The role-fit component remains provisional until RR's official 2027 retained/traded/released list establishes actual vacancies. The 2026 squad form and reported trade are contextual scenarios only.
+
 ## Sources and attribution
 
 - [Cricsheet downloads](https://cricsheet.org/downloads/) and [coverage](https://cricsheet.org/coverage/) — public ball-by-ball archives.

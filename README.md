@@ -5,6 +5,7 @@ A lightweight Rajasthan Royals themed scouting dashboard and reproducible public
 ## Current state
 
 - The static dashboard is in `index.html`; `outputs/superrr-scout-dashboard.html` is the same deliverable. It imports candidate CSVs locally in the browser and keeps uploaded data on the device.
+- Candidate intake requires an explicit uncapped status plus a valid age or DOB; unknown/capped rows are excluded and counted. The source season is carried into the shortlist and export so stale evidence is visible. The 2027 retention list is not yet published, so current role-fit weighting is provisional and must be recalculated from confirmed vacancies.
 - `train_model.py` trains a two-stage model on 18 domestic/franchise T20 archives, with IPL outcomes, Cricsheet identities and chronological validation. The latest validation has 19,231 training player-season rows, 0.588 ROC-AUC, and 1/10 top-10 appearance precision. Its 96.2% raw accuracy is exactly the all-negative baseline. See `outputs/model_validation.md`.
 - `build_rr_roster_form.py` creates `outputs/rr_squad_form_2025_2026.csv`, joining the official RR 2026 squad categories with IPL 2025/2026 ball-by-ball form where identity matches. Empty cells mean unresolved or unavailable evidence.
 - `outputs/rr_auction_scenarios.md` compares RR phase performance and sets conditional role priorities if the reported RR–LSG trade happens or falls through. The rumour names no players and is not treated as a completed trade.
