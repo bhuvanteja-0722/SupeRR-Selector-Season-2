@@ -17,6 +17,7 @@
 - Confirmed explicit uncapped, unknown-status, and capped semantics; only verified uncapped rows are eligible. Explicit capped status is not overridden by the pack declaration and capped profiles cannot be used to match public rows.
 - Confirmed challenge-pack declaration admits a missing status only when enabled for the selected file; disabling it rejects the same row.
 - Tested the visible Choose CSV files button end to end and tested dropping a second CSV onto the drop target; both added valid candidates and updated the dashboard.
+- Dragged a 14-row fictional pack-shaped CSV into the live dashboard: 12 explicit uncapped players scored, one capped and one pending-status row were excluded, 10 shortlist cards rendered, and ages 27 and 29 remained eligible because no maximum age is in the brief. The 8-match and 6-match candidates surfaced small-sample risks. The exported CSV contained 10 ranked rows with rationale and risk fields. The synthetic file and export were deleted after the check.
 - Confirmed the two dataset download links return HTTP 200 and `text/csv` over the local server.
 - Confirmed public evidence preloads, stays held without a candidate profile, joins to one unique verified candidate, and avoids double counting overlapping pack/public stats.
 - Checked duplicate handling, latest-season behavior, DOB parsing, inclusion of a 27-year-old because no upper age limit is stated, exclusion of the capped fixture, reason/risk generation, scenario-driven score change and top-10 CSV export fields.

@@ -260,7 +260,7 @@ def main():
         if not strengths:
             strengths.append(f"{c['matches']} matches; performance evidence incomplete")
         risks = []
-        if c["matches"] < 8: risks.append(f"small sample ({c['matches']} matches)")
+        if c["matches"] < 10: risks.append(f"small sample ({c['matches']} matches)")
         if role in {"bat", "keep", "allround"} and c["balls"] < 100: risks.append("limited batting sample")
         if role in {"bowl", "allround"} and c["bowl_balls"] < 60: risks.append("limited bowling sample")
         if role == "allround" and not (has_bat and has_bowl): risks.append("two-skill role needs verification")
