@@ -1,12 +1,12 @@
 import sys
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+root=Path(__file__).resolve().parent
+sys.path.insert(0,str(root))
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, HistGradientBoostingClassifier
 from sklearn.metrics import roc_auc_score, brier_score_loss
 from train_model import load_deliveries, aggregate, combine, season_bounds, build_frame, FEATURES, fit_models, predictions
 
-root=Path(__file__).resolve().parents[1]
 data=root/'work'/'data'
 sma_raw=load_deliveries(data/'sma_csv2.zip'); ipl_raw=load_deliveries(data/'ipl_csv2.zip')
 reg,display=__import__('train_model').load_name_registry(data/'people.csv',data/'names.csv')

@@ -31,6 +31,23 @@ Cricsheet coverage is incomplete and varies by competition; league strength and 
 
 When the pack arrives: confirm its permitted use and schema, join candidates to stable identities, verify DOB/uncapped status, de-duplicate seasons, compare age-role baselines with the model in chronological backtests, calibrate probabilities, inspect errors and uncertainty, then produce a sourced top 10.
 
+### Top-10 hit-rate experiment (7 Nov 2026)
+
+To check whether ranking changes could improve the shortlist, four approaches were compared on the same five chronological Indian SMAT folds mapped to the next IPL season: the current multi-league expected-impact score, a SMAT-only model, a fixed 50/50 rank blend, and multi-league models with 2-, 4-, or 8-year recency half-lives. The evaluation metric is top-10 precision (players in the 10 who appeared in the following IPL season). Results are in [hit_rate_benchmark.json](hit_rate_benchmark.json).
+
+| Ranking | Mean top-10 precision (5 folds) | Latest fold (SMAT 2024/25 → IPL 2025) |
+|---|---:|---:|
+| Multi-league expected impact | 56% | 7/10 (70%) |
+| SMAT-only expected impact | 58% | 5/10 (50%) |
+| Fixed half-rank blend | 58% | 6/10 (60%) |
+| Recency weighted, 2-year half-life | 54% | 6/10 (60%) |
+| Recency weighted, 4-year half-life | 54% | 6/10 (60%) |
+| Recency weighted, 8-year half-life | 56% | 7/10 (70%) |
+
+No alternative beats the current multi-league model consistently: SMAT-only and the fixed blend lead by two percentage points on the five-fold mean, but both lose on the most recent fold. Recency weighting does not improve the mean. Keep the current scorer as a baseline; do not claim that this experiment raised the reliable hit rate. Five folds are a small historical sample, and “appeared in IPL” is only a proxy—not auction purchase, RR fit, or future performance. The next material improvement depends on candidate-level challenge data (age, uncapped status, role, phase performance and sample size), verified 2027 squad vacancies, and evaluation against a clearly defined RR selection/value outcome.
+
+A separate five-fold SMAT comparison of logistic regression, random forest, extra trees, and histogram gradient boosting also did not support a model swap: top-10 precision means were 58%, 50%, 58%, and 52%, respectively. Extra trees reached 7/10 on the 2021/22 fold but only 4/10 on the latest fold; logistic regression reached 5/10 latest. Fold-level scores are reproducible with `python3 benchmark_models.py`. These experiments reinforce that a model family change does not solve the sparse and indirect target problem.
+
 ## Sources and attribution
 
 - [Cricsheet downloads](https://cricsheet.org/downloads/) and [coverage](https://cricsheet.org/coverage/) — public ball-by-ball archives.

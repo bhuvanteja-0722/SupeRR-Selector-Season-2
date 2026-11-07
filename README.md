@@ -9,6 +9,7 @@ A lightweight Rajasthan Royals themed scouting dashboard and reproducible public
 - `build_rr_roster_form.py` creates `outputs/rr_squad_form_2025_2026.csv`, joining the official RR 2026 squad categories with IPL 2025/2026 ball-by-ball form where identity matches. Empty cells mean unresolved or unavailable evidence.
 - `outputs/rr_auction_scenarios.md` compares RR phase performance and sets conditional role priorities if the reported RR–LSG trade happens or falls through. The rumour names no players and is not treated as a completed trade.
 - `outputs/rr_scout_model.joblib`, `outputs/holdout_metrics.json`, `outputs/latest_season_holdout.csv`, `outputs/dataset_inventory.csv` preserve the trained artifact and research output.
+- `benchmark_scouting.py` compares shortlist ranking changes on five chronological SMAT folds. The current multi-league scorer remains the baseline because recency weighting and blending did not yield a repeatable gain; see `outputs/hit_rate_benchmark.json` and the experiment summary in `outputs/model_validation.md`.
 
 ## Run locally
 
