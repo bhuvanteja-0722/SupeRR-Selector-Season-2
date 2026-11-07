@@ -1,0 +1,13 @@
+Dataset,Download,Matches,Date span,Use in current model,Status
+IPL,https://cricsheet.org/downloads/ipl_csv2.zip,1243,2008-04-18 to 2026-05-31,Next-season outcome labels,Downloaded to work/data
+Syed Mushtaq Ali Trophy,https://cricsheet.org/downloads/sma_csv2.zip,695,2016-01-02 to 2024-12-15,Domestic feature training; incomplete coverage,Downloaded to work/data
+Big Bash League,https://cricsheet.org/downloads/bbl_csv2.zip,662,2011-12-16 to 2026-01-25,External T20 comparison only,Downloaded to work/data
+Caribbean Premier League,https://cricsheet.org/downloads/cpl_csv2.zip,445,2013-07-30 to 2026-09-20,External T20 comparison only,Downloaded to work/data
+Pakistan Super League,https://cricsheet.org/downloads/psl_csv2.zip,357,2016-02-04 to 2026-05-03,External T20 comparison only,Downloaded to work/data
+SA20,https://cricsheet.org/downloads/sat_csv2.zip,130,2023-01-10 to 2026-01-25,External T20 comparison only,Downloaded to work/data
+International League T20,https://cricsheet.org/downloads/ilt_csv2.zip,134,2023-01-13 to 2026-01-04,External T20 comparison only,Downloaded to work/data
+Lanka Premier League,https://cricsheet.org/downloads/lpl_csv2.zip,143,2020-11-26 to 2026-08-08,External T20 comparison only,Downloaded to work/data
+Major League Cricket,https://cricsheet.org/downloads/mlc_csv2.zip,109,2023-07-13 to 2026-07-18,External T20 comparison only,Downloaded to work/data
+Men's T20 internationals,https://cricsheet.org/downloads/t20s_male_csv2.zip,3649,All available seasons,International experience cross-check only,Downloaded to work/data
+Cricsheet people register,https://cricsheet.org/register/people.csv,18698,Updated by Cricsheet,Name and ID resolution,Downloaded to work/data
+Cricsheet name variants,https://cricsheet.org/register/names.csv,8818,Updated by Cricsheet,Name and ID resolution,Downloaded to work/data

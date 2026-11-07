@@ -26,6 +26,20 @@ After the pack arrives:
 
 The browser import expects a player-summary CSV with a name, age or DOB, role, uncapped status if supplied, and common batting/bowling summary fields. Recognized headings include `player`, `age`, `dob`, `team/state`, `role/specialism`, `matches`, `runs`, `balls faced`, `dismissals`, `strike rate`, `average`, `wickets`, `balls bowled`, `runs conceded`, `economy`, `dot balls`, `catches`, and `stumpings`. It accepts multiple CSV files. Do not upload proprietary files to a public web host.
 
+## Reproducible public-data baseline
+
+`train_model.py` trains a two-stage SMAT-to-next-IPL model from Cricsheet Ashwin CSV archives. It uses season-forward evaluation, a Cricsheet people/name registry join, an appearance classifier and an impact regression. The baseline is not a precision guarantee. See [the validation checkpoint](outputs/model_validation.md) for the holdout and fold results. `score_candidates.py` applies the saved model to a cleaned player-summary CSV; use its optional `--report` output to audit excluded rows. `work/data/` is the local data room for downloaded public archives and is intentionally not pushed to GitHub.
+
+Example local commands:
+
+```sh
+python3 train_model.py --sma-zip work/data/sma_csv2.zip --ipl-zip work/data/ipl_csv2.zip \
+  --people-csv work/data/people.csv --names-csv work/data/names.csv --out work/model
+python3 score_candidates.py --model work/model/rr_scout_model.joblib \
+  --input candidates.csv --output work/ranked_candidates.csv --report work/eligibility_audit.json
+python3 benchmark_models.py
+```
+
 Cricsheet's experimental Ashwin CSVs are ball-by-ball, not player summaries. Aggregate them by player and season before browser upload; preserve competition and season fields and de-duplicate match/player rows. Do not mix formats or count an extra delivery as a legal ball unless the source says it is legal.
 
 ## Public sources to collect
@@ -43,7 +57,7 @@ Open `index.html` in any modern browser. There is no build step or server. All r
 
 ## Scoring baseline
 
-Within-role percentiles combine batting strike rate, average and run volume (44/30/26) or bowling wicket rate, economy and dot-ball rate (48/35/17). The skill estimate is shrunk toward a neutral score according to match count; an initial confidence factor is `matches / (matches + 5)`. The overall blend is 78% skill, 12% age upside, 6% provisional role fit and 4% evidence reliability. All weights are explicit and should be replaced or tuned only after backtesting. The current web implementation does not estimate phase-specific skills, venue effects or a learned outcome probability.
+The browser's direct CSV import provides a transparent provisional heuristic (78% role skill, 12% age upside, 6% provisional role fit, 4% sample reliability). For the supervised two-stage outcome model, run `score_candidates.py` with the locally trained artifact and import its output CSV; the page will then use its 100-point model score and show the learned appearance probability. Validation is weak and documented in [model_validation.md](outputs/model_validation.md). Neither score estimates a 2027 auction success probability.
 
 ## Attribution
 
