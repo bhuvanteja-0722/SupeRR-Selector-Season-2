@@ -19,6 +19,8 @@ The training pipeline previously counted only the first batter as having an inni
 
 - Parsed a verified uncapped candidate, an unknown-status row, and a capped-status row. Only verified uncapped entries remained eligible.
 - Uploaded profile and statistics files separately. The statistics row joined to its unique verified profile and inherited DOB/age and team.
+- Tested the visible “Choose CSV files” button end to end: selecting a valid CSV added one eligible uncapped player and updated the audit. Tested dropping a second CSV into the drop zone: the second candidate appeared, taking the count to two.
+- Checked both new dashboard dataset download links over the local server; each returned HTTP 200 with `text/csv` (prepared evidence bundle and dataset inventory).
 - Confirmed an explicitly capped player never becomes a public-join profile, even if the capped row came from a file marked as the uncapped-only pack.
 - Confirmed the bundled public evidence preloads (7,159 rows) and stays on hold before candidate profiles arrive. Marked a sample uncapped pack profile at upload time, then verified that only its matching latest-season public row joined and scored; unmatched public players stayed held aside.
 - Uploaded same-player rows from two seasons. Latest-season volumes combined and the older-season row was excluded from scoring.
