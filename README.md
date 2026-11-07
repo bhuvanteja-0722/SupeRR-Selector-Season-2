@@ -39,3 +39,7 @@ The dashboard's RR logo and player portraits link to the official [Rajasthan Roy
 ## Data boundaries
 
 Cricsheet match coverage varies, identity joins are imperfect, franchise-strength differences matter, and separate league-season rows for one player are not independent observations. The historical model target is next-IPL appearance and a coarse impact label, not RR purchase success or 2027 performance. It does not determine the challenge shortlist. Review the top 10 against original scorecards, player identity, role, availability, auction context and confirmed RR squad needs before submitting your own recommendations.
+
+## Render deployment
+
+`render.yaml` defines a free Render Static Site and deploys from `main`. Its build publishes only `index.html`, `outputs/public_t20_evidence.csv`, and `outputs/dataset_inventory.csv` into a generated `render-site/` directory. It does not publish the training archives, scripts, local artifacts, or any challenge-pack data. Candidate CSVs are processed in the visitor's browser and are not sent to the site. Static Sites are free on Render; no web service or paid compute is required. [Open the Render deployment flow](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2Fbhuvanteja-0722%2FSupeRR-Selector-Season-2) and connect your GitHub account to create the live site; subsequent pushes deploy automatically.

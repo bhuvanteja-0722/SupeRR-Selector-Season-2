@@ -3,3 +3,4 @@ __pycache__/
 work/model/
 work/mock_*
 .playwright-mcp/
+render-site/

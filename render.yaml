@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: superrr-scout-ipl-2027
+    runtime: static
+    branch: main
+    autoDeployTrigger: commit
+    buildCommand: mkdir -p render-site/outputs && cp index.html render-site/index.html && cp outputs/public_t20_evidence.csv outputs/dataset_inventory.csv render-site/outputs/
+    staticPublishPath: ./render-site
+    envVars:
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin

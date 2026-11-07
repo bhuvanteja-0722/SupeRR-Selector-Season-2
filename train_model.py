@@ -78,7 +78,7 @@ def aggregate(deliveries, side, name_registry=None):
     dates = defaultdict(list)
     matches = defaultdict(set)
     innings = defaultdict(set)
-    first_batter_innings = set()
+    batter_innings_seen = set()
     for r in deliveries:
         player_field = "striker" if side == "bat" else "bowler"
         player_name = r.get(player_field, "").strip()
@@ -100,13 +100,14 @@ def aggregate(deliveries, side, name_registry=None):
         if side == "bat":
             s["runs"] += runs
             s["balls"] += int(wides == 0)
-            if match and inn and (match, inn) not in first_batter_innings:
+            batter_innings_key = (match, inn, player)
+            if match and inn and batter_innings_key not in batter_innings_seen:
                 s["bat_innings"] += 1
-                first_batter_innings.add((match, inn))
+                batter_innings_seen.add(batter_innings_key)
             dismissed_raw = norm(r.get("player_dismissed", ""))
             dismissed = (name_registry or {}).get(dismissed_raw, dismissed_raw)
             wicket = norm(r.get("wicket_type", ""))
-            if dismissed == norm(player) and wicket not in {"run out", "retired hurt", "retired out", "obstructing the field"}:
+            if dismissed == player and wicket not in {"run out", "retired hurt", "retired out", "obstructing the field"}:
                 s["outs"] += 1
         else:
             s["runs_conceded"] += runs + wides + noballs
@@ -269,7 +270,10 @@ def main():
         r["predicted_ipl_impact_per_match"] = pred
         r["predicted_expected_impact"] = prob * pred
     scored = sorted(test, key=lambda r: r["predicted_expected_impact"], reverse=True)
-    hit_at_10 = sum(r["ipl_next_appearance"] for r in scored[:10]) / max(1, min(10, len(scored)))
+    top_n = min(10, len(test))
+    hit_at_10 = sum(r["ipl_next_appearance"] for r in scored[:top_n]) / max(1, top_n)
+    prob_ranked_test = sorted(zip(test, p), key=lambda x: x[1], reverse=True)
+    probability_hit_at_10 = float(np.mean([r["ipl_next_appearance"] for r, _ in prob_ranked_test[:top_n]]))
     labels = [r["ipl_next_appearance"] for r in test]
     threshold_labels = [int(v >= .5) for v in p]
     holdout_prevalence = float(np.mean(labels))
@@ -285,17 +289,21 @@ def main():
         fold_clf, fold_reg = fit_models(fold_train)
         fp, fi = predictions(fold_clf, fold_reg, fold_test)
         fy = [r["ipl_next_appearance"] for r in fold_test]
-        ftop = sorted(zip(fold_test, fp, fi), key=lambda z: z[1] * z[2], reverse=True)[:10]
+        fold_top_n = min(10, len(fold_test))
+        expected_top = sorted(zip(fold_test, fp, fi), key=lambda z: z[1] * z[2], reverse=True)[:fold_top_n]
+        probability_top = sorted(zip(fold_test, fp), key=lambda z: z[1], reverse=True)[:fold_top_n]
         walk_forward.append({"validation_season": validation_season,
                              "target_ipl_season": fold_test[0]["target_ipl_season"],
                              "rows": len(fold_test),
                              "roc_auc": float(roc_auc_score(fy, fp)) if len(set(fy)) == 2 else None,
                              "brier_score": float(brier_score_loss(fy, fp)),
-                             "precision_at_10_appearance": float(np.mean([x[0]["ipl_next_appearance"] for x in ftop]))})
+                             "precision_at_10_appearance": float(np.mean([x[0]["ipl_next_appearance"] for x in expected_top])),
+                             "precision_at_10_by_appearance_probability": float(np.mean([x[0]["ipl_next_appearance"] for x in probability_top]))})
     metrics = {"training_rows": len(train), "training_seasons": seasons[:-1],
                "holdout_season": holdout, "holdout_target_ipl_season": test[0]["target_ipl_season"],
                "holdout_rows": len(test), "holdout_appearance_rate": holdout_prevalence,
                "precision_at_10_for_appearance": hit_at_10,
+               "precision_at_10_by_appearance_probability": probability_hit_at_10,
                "accuracy_at_probability_0_5": float(np.mean(np.asarray(labels) == np.asarray(threshold_labels))),
                "naive_all_no_accuracy": 1.0 - holdout_prevalence,
                "brier_score": float(brier_score_loss(labels, p)),
@@ -312,6 +320,10 @@ def main():
                                  if registry else "exact normalized text only; unresolved aliases are treated as non-appearances"),
                "walk_forward_folds": walk_forward,
                "walk_forward_mean_precision_at_10": float(np.mean([f["precision_at_10_appearance"] for f in walk_forward])) if walk_forward else None,
+               "walk_forward_mean_precision_at_10_by_appearance_probability": float(np.mean([f["precision_at_10_by_appearance_probability"] for f in walk_forward])) if walk_forward else None,
+               "smat_walk_forward_folds": [f for f in walk_forward if f["validation_season"].startswith("sma:")],
+               "smat_walk_forward_mean_precision_at_10_expected_impact": float(np.mean([f["precision_at_10_appearance"] for f in walk_forward if f["validation_season"].startswith("sma:")])) if any(f["validation_season"].startswith("sma:") for f in walk_forward) else None,
+               "smat_walk_forward_mean_precision_at_10_appearance_probability": float(np.mean([f["precision_at_10_by_appearance_probability"] for f in walk_forward if f["validation_season"].startswith("sma:")])) if any(f["validation_season"].startswith("sma:") for f in walk_forward) else None,
                "walk_forward_mean_auc": float(np.mean([f["roc_auc"] for f in walk_forward if f["roc_auc"] is not None])) if any(f["roc_auc"] is not None for f in walk_forward) else None}
     (out / "holdout_metrics.json").write_text(json.dumps(metrics, indent=2))
     columns = ["player_name", "domestic_season", "target_ipl_season", "matches", "innings", "runs",

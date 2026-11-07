@@ -23,3 +23,4 @@ Men’s international T20s (extended archive),https://cricsheet.org/downloads/it
 ICC Men’s T20 World Cup,https://cricsheet.org/downloads/icc_mens_t20_world_cup_male_csv2.zip,230,2014-03-16,2026-03-08,Identity / research reference only,downloaded 2026-11-07,icc_mens_t20_world_cup_male_csv2.zip,1249858
 Cricsheet people register,https://cricsheet.org/register/people.csv,,,,Name and ID resolution,downloaded 2026-11-07,people_register.csv,1187398
 Cricsheet name variants,https://cricsheet.org/register/names.csv,,,,Cross-competition name resolution,downloaded 2026-11-07,name_variants.csv,162471
+Public domestic T20 evidence bundle,Derived from 18 Cricsheet domestic/franchise T20 archives,,,,Latest player/competition seasons; dashboard enrichment after verified candidate join,generated 2026-11-07,public_t20_evidence.csv,855638
