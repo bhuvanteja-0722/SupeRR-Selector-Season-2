@@ -1,37 +1,28 @@
-# Upload, preprocessing and scoring audit
+# Round 1 intake, scoring and export audit
 
-**Checked 7 Nov 2026.** The 8 Nov proprietary pack was not yet available during this check, so the upload workflow was exercised with disposable sample CSVs. No sample player rows are included in the repository. A public evidence bundle was generated from 18 Cricsheet domestic/franchise T20 archives: 7,159 latest player/competition-season rows. It preloads when the dashboard runs over HTTP.
+**Checked 7 Nov 2026.** Round 1 is open 8 Nov 2026 10:00 a.m. IST through 18 Nov 2026 11:59 p.m. IST. The proprietary pack was not yet available during this check, so upload and ranking were exercised with disposable fixtures only. No sample player rows or proprietary data are included in GitHub. The local public evidence bundle contains 7,159 latest player/competition-season rows from 18 Cricsheet domestic/franchise T20 archives.
 
-## What happens after upload
+## Challenge-aligned workflow
 
-1. The browser parses quoted CSV rows, normalizes headers and recognizes player, age/DOB, team, role, cap status, season and batting/bowling fields.
-2. Exact duplicate rows are removed. Rows explicitly marked capped are excluded. Missing/ambiguous cap status is excluded unless it can be joined by a unique name/alias to one explicitly uncapped profile, or the user marks selected files as the official uncapped-only challenge pack. An explicit capped label always overrides the pack declaration, including during profile matching. That declaration is stored per file; turn it off before adding public evidence.
-3. A valid age is calculated from DOB when necessary, using 8 Nov 2026 as the auction reference. Players outside age 0–25 are excluded. Rows without batting or bowling volume are excluded.
-4. Profiles and performance summaries can be uploaded in separate CSVs. Bundled public rows join only to one uniquely verified player name or alias; names that match multiple profiles are held aside. A stable player ID or DOB is preferred. Without either, the fallback is normalized name plus team, and Cricsheet name-only matches are flagged for human identity review.
-5. For one player, multiple rows from the latest season are combined by volume and rates are recalculated. Older-season rows are ignored for ranking. The on-page audit reports rows, eligibility exclusions, joined rows, exact duplicates, and older rows ignored.
-6. The browser builds the same 12 features as the trained models and runs both the multi-league and SMAT logistic/Ridge models locally. Their expected-impact ranks are blended 50/50; the final score weights blended rank 70%, age 20%, and provisional RR role fit 10%. CSV export includes both model signals, expected impacts, rank blend, score, season and evidence volume.
-
-## Data-preparation correction
-
-The training pipeline previously counted only the first batter as having an innings in each team innings. It now counts each batter's innings separately. Dismissal matching now compares resolved player identifiers consistently. The public-data baseline was retrained after these corrections. Corrected results are in `holdout_metrics.json`; candidate ranking experiments are in `hit_rate_benchmark.json`.
+1. Load the private pack locally after release. The file-level pack declaration is only for a challenge file that is confirmed to contain uncapped players but has no status column. Explicit capped status always wins. Capped, unknown, missing-name, invalid-age and no-performance-volume rows are not eligible.
+2. There is no age ceiling in the supplied brief. The dashboard therefore applies no arbitrary under-26 cutoff; younger eligible players receive a higher relative youth score. Recheck pack rules when released.
+3. Profile and public-performance rows can be separate. Public evidence joins only through a unique verified name/alias; ambiguous rows are held aside. Stable ID/DOB is preferred; name-only joins require review.
+4. Exact duplicate rows are removed. Same-player records are reduced to the latest available season and same-season volumes are combined. Overlapping pack and public statistics are suppressed to avoid double counting.
+5. The Round 1 top-10 scouting rubric ranks candidates using role-specific observed performance (60%), youth relative to eligible candidates (25%) and an explicitly selected provisional RR need scenario (15%). Batting compares strike rate, average, runs per match and batting-ball evidence depth. Bowling compares wicket rate, economy, dot-ball rate and bowling-ball evidence depth. Missing measures are omitted and remaining component weights are renormalized.
+6. Each candidate displays why their evidence merits consideration, the rubric component scores, sample/identity/skill risks and separate historical IPL appearance model signals. Historical IPL model signals do not control the shortlist and are not auction probabilities. The RR scenario defaults to neutral pending official retentions/trades.
+7. Export generates a top-10 CSV containing names, age, role, stats, score components, scenario, rationale and risk checks. The participant must review evidence and make their own submission decision.
 
 ## Checks performed
 
-- Parsed a verified uncapped candidate, an unknown-status row, and a capped-status row. Only verified uncapped entries remained eligible.
-- Uploaded profile and statistics files separately. The statistics row joined to its unique verified profile and inherited DOB/age and team.
-- Tested the visible “Choose CSV files” button end to end: selecting a valid CSV added one eligible uncapped player and updated the audit. Tested dropping a second CSV into the drop zone: the second candidate appeared, taking the count to two.
-- Checked both new dashboard dataset download links over the local server; each returned HTTP 200 with `text/csv` (prepared evidence bundle and dataset inventory).
-- Confirmed an explicitly capped player never becomes a public-join profile, even if the capped row came from a file marked as the uncapped-only pack.
-- Confirmed the bundled public evidence preloads (7,159 rows) and stays on hold before candidate profiles arrive. Marked a sample uncapped pack profile at upload time, then verified that only its matching latest-season public row joined and scored; unmatched public players stayed held aside.
-- Uploaded same-player rows from two seasons. Latest-season volumes combined and the older-season row was excluded from scoring.
-- Used the challenge-pack declaration with a file that had no cap-status column; the row entered the shortlist. The same row is rejected when the declaration is off.
-- Checked generated multi-model signal values against scikit-learn inference for the same feature vector; displayed rounded signals agreed.
-- Exercised the top-10 CSV export and confirmed it contains the current score fields and season.
-- Confirmed CLI scoring excludes missing cap status by default and excludes capped rows even when `--pack-uncapped` is enabled.
-- Compiled changed Python files, checked dashboard JavaScript syntax and confirmed the two dashboard HTML copies match.
+- Confirmed explicit uncapped, unknown-status, and capped semantics; only verified uncapped rows are eligible. Explicit capped status is not overridden by the pack declaration and capped profiles cannot be used to match public rows.
+- Confirmed challenge-pack declaration admits a missing status only when enabled for the selected file; disabling it rejects the same row.
+- Tested the visible Choose CSV files button end to end and tested dropping a second CSV onto the drop target; both added valid candidates and updated the dashboard.
+- Confirmed the two dataset download links return HTTP 200 and `text/csv` over the local server.
+- Confirmed public evidence preloads, stays held without a candidate profile, joins to one unique verified candidate, and avoids double counting overlapping pack/public stats.
+- Checked duplicate handling, latest-season behavior, DOB parsing, inclusion of a 27-year-old because no upper age limit is stated, exclusion of the capped fixture, reason/risk generation, scenario-driven score change and top-10 CSV export fields.
+- CLI scoring now has no maximum-age cutoff by default and uses the same 60/25/15 scouting rubric; an optional max-age can be supplied only if official rules require it. The PDF button calls browser print; print media styling shows the shortlist and methodology while hiding upload controls and dataset panels.
+- Compiled changed Python files, checked dashboard JavaScript syntax and confirmed dashboard HTML copies match.
 
-## Limits
+## Limits and interpretation
 
-The strongest top-10 result remains a small chronological SMAT backtest: the fixed blend averaged 6/10 across five folds versus 5.4/10 for multi-league expected impact. It hit 6/10 on the latest fold while the multi-league ranker hit 7/10. This is an encouraging but preliminary change in an indirect historical target—whether a player appeared in the next IPL—not RR auction success or player value. The five-fold validation includes all SMAT players; historical DOB/cap labels were not consistently available to replay the dashboard’s under-26, uncapped filter, so this gain has not been verified on that filtered pool.
-
-The latest broad holdout remains weak (1/10 top-10 precision and ROC-AUC 0.539). Probabilities are not calibrated and are labeled as signals. RR's 2027 retention list was not published at audit time, so role fit is only a provisional 2026 reference. The challenge pack, source permissions, stable player identities, exact age/cap eligibility, role-specific phase data and official 2027 roster must be checked before a top 10 is treated as a recommendation. Multi-season summaries are reduced to the latest season; match-by-match form and venue/opponent adjustments are not inferred when the uploaded pack does not contain those fields. Name-only public evidence matches require manual identity confirmation.
+The public supervised model is a research aid trained to predict next-IPL appearance and a coarse impact proxy. Its latest broad chronological holdout was weak (ROC-AUC 0.539; top-10 hit rate 1/10); raw 96.2% accuracy merely matches the all-negative baseline. Historical DOB/uncapped labels are not sufficiently available to backtest this Round 1 eligible pool, and the 60/25/15 scouting weights are an explicit heuristic, not learned or proven optimal. RR's official 2027 retentions were not yet published. Update role priorities from the pack, confirmed roster and permitted public sources, inspect original scorecards, manually verify identities, and retain human judgment. Keep the proprietary pack private and out of GitHub.

@@ -15,15 +15,17 @@ The most recent eligible competition-season in the archived data is **ssm_male:2
 | Measure | Result | Interpretation |
 |---|---:|---|
 | Raw accuracy at 0.50 | 96.2% | Exactly the all-negative baseline (96.2%); not evidence of useful prediction |
-| ROC-AUC | 0.588 | Weak ranking signal on this holdout |
+| ROC-AUC | 0.539 | Weak ranking signal on this holdout |
 | Top-10 appearance precision | 10% | 1/10 selected players appeared |
 | Brier score | 0.043 | Worse than prevalence-only baseline (0.036) |
-| Walk-forward mean AUC | 0.692 | Mean over 124 competition-season folds; repeated IPL target seasons and heterogeneous leagues make this descriptive, not independent evidence |
-| Walk-forward mean top-10 precision | 24.6% | Low shortlist hit rate across the folds |
+| Walk-forward mean AUC | 0.689 | Mean over 124 competition-season folds; repeated IPL target seasons and heterogeneous leagues make this descriptive, not independent evidence |
+| Walk-forward mean top-10 precision | 23.8% | Low shortlist hit rate across the folds |
 
 ## Decision
 
 The larger pool does **not** make this a pinpoint model. Accuracy is misleading under the rare appearance label: predicting no one appears reaches the same holdout accuracy. The latest AUC, top-10 hit rate and Brier score show this model is unsuitable as a decision-maker. Use it only to organize evidence, then combine the challenge pack, verified age/uncapped status, role needs, workload, venue/phase skills, auction constraints and human scouting. No claim of 95% accuracy is supported.
+
+During the workflow audit, batter innings had been undercounted because only the first batter in an innings received an innings entry. The feature now counts each batter's innings independently. Dismissal matching also compares resolved player identifiers consistently. The pipeline was retrained and all holdout metrics below reflect this corrected preprocessing. Predictive AUC decreased from 0.588 to 0.539; the top-10 hit rate remained 1/10. This correction improves data validity, not observed model performance.
 
 ## Data limits and next update
 
@@ -37,18 +39,18 @@ To check whether ranking changes could improve the shortlist, four approaches we
 
 | Ranking | Mean top-10 precision (5 folds) | Latest fold (SMAT 2024/25 → IPL 2025) |
 |---|---:|---:|
-| Multi-league expected impact | 56% | 7/10 (70%) |
-| SMAT-only expected impact | 58% | 5/10 (50%) |
-| Fixed half-rank blend | 58% | 6/10 (60%) |
+| Multi-league expected impact | 54% | 7/10 (70%) |
+| SMAT-only expected impact | 54% | 5/10 (50%) |
+| Fixed half-rank blend | 60% | 6/10 (60%) |
 | Recency weighted, 2-year half-life | 54% | 6/10 (60%) |
 | Recency weighted, 4-year half-life | 54% | 6/10 (60%) |
 | Recency weighted, 8-year half-life | 56% | 7/10 (70%) |
 
-No alternative beats the current multi-league model consistently: SMAT-only and the fixed blend lead by two percentage points on the five-fold mean, but both lose on the most recent fold. Recency weighting does not improve the mean. Keep the current scorer as a baseline; do not claim that this experiment raised the reliable hit rate. Five folds are a small historical sample, and “appeared in IPL” is only a proxy—not auction purchase, RR fit, or future performance. The next material improvement depends on candidate-level challenge data (age, uncapped status, role, phase performance and sample size), verified 2027 squad vacancies, and evaluation against a clearly defined RR selection/value outcome.
+The fixed 50/50 rank blend improves the five-fold SMAT mean from 54% to 60% and beats the multi-league ranking on four of five folds; the latest fold goes the other way (6/10 blend versus 7/10 multi-league). This remains a historical diagnostic only. The challenge dashboard now ranks by an explicit scouting rubric: role-specific observed performance (60%), relative youth within the eligible pool (25%), and a selected provisional RR need scenario (15%). Logistic and Ridge model outputs remain visible as context and do not control the shortlist. This backtest uses all SMAT player rows; age and uncapped filters were not available in the historical fold data, so the gain has not been validated specifically on the final young, uncapped pool. Treat the six-percentage-point mean gain as preliminary: only five folds, non-independent IPL target seasons, and “appeared in IPL” is a proxy—not RR purchase, fit, or future value. It is not a guarantee of a higher hit rate on the challenge pool.
 
-A separate five-fold SMAT comparison of logistic regression, random forest, extra trees, and histogram gradient boosting also did not support a model swap: top-10 precision means were 58%, 50%, 58%, and 52%, respectively. Extra trees reached 7/10 on the 2021/22 fold but only 4/10 on the latest fold; logistic regression reached 5/10 latest. Fold-level scores are reproducible with `python3 benchmark_models.py`. These experiments reinforce that a model family change does not solve the sparse and indirect target problem.
+A separate five-fold SMAT comparison of logistic regression, random forest, extra trees, and histogram gradient boosting also did not support a model swap: top-10 precision means were 54%, 56%, 56%, and 58%, respectively. Histogram gradient boosting reached 6/10 on the latest fold; the logistic baseline reached 5/10. Fold-level scores are reproducible with `python3 benchmark_models.py`. These experiments reinforce that a model family change does not solve the sparse and indirect target problem.
 
-The candidate intake was tightened for the challenge workflow: the dashboard now excludes capped or unknown-cap-status rows unless the source explicitly verifies an uncapped player, requires a usable age/DOB for ranking, shows the data season in the shortlist/export, and counts cap-status rejections. This improves eligibility hygiene; it is not a measured increase in predictive hit rate. The role-fit component remains provisional until RR's official 2027 retained/traded/released list establishes actual vacancies. The 2026 squad form and reported trade are contextual scenarios only.
+The candidate intake is designed for Round 1: the dashboard excludes explicitly capped and unknown-status candidates, except for missing statuses in a file deliberately marked as the official uncapped-only pack; explicit capped labels always override that declaration. It joins public rows only to unique verified identities, combines same-season rows, removes exact duplicates, and reports the row audit. The task states no maximum age, so the dashboard applies no invented under-26 cutoff; youth is scored relative to the eligible pool. RR role fit remains provisional until the official 2027 retained/traded/released list establishes actual vacancies. The 2026 squad form and reported trade are contextual scenarios only.
 
 ## Sources and attribution
 
