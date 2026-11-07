@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Train a time-split domestic-T20 to next-IPL contribution baseline.
+"""Train a time-split multi-league T20 to next-IPL contribution baseline.
 
 Inputs are Cricsheet Ashwin CSV ZIP archives. This model predicts (1) next-IPL
 appearance and (2) per-match impact conditional on appearing. Expected impact is
 their product. It is a research baseline; it does not use age or private fields.
 
 Example:
-  python3 train_model.py --sma-zip sma_csv2.zip --ipl-zip ipl_csv2.zip --out model_artifacts
+  python3 train_model.py --domestic-zips sma_csv2.zip bbl_csv2.zip --ipl-zip ipl_csv2.zip --out model_artifacts
 """
 import argparse
 import csv
@@ -167,16 +167,16 @@ def season_bounds(dates):
             for season, values in dates.items() if any(values)}
 
 
-def build_frame(sma, sma_bounds, ipl, ipl_bounds):
+def build_frame(domestic, domestic_bounds, ipl, ipl_bounds):
     rows = []
     ipl_starts = {season: bounds[0] for season, bounds in ipl_bounds.items()}
-    for season, bounds in sma_bounds.items():
+    for season, bounds in domestic_bounds.items():
         cutoff = bounds[1]
         later = [(start, key) for key, start in ipl_starts.items() if start > cutoff]
         if not later:
             continue
         target_season = min(later)[1]
-        candidates = [(k, v) for k, v in sma.items() if k[0] == season]
+        candidates = [(k, v) for k, v in domestic.items() if k[0] == season]
         for (_, player), feats in candidates:
             outcome = ipl.get((target_season, player), {})
             played = int(outcome.get("matches", 0) > 0)
@@ -220,7 +220,8 @@ def write_csv(path, rows, fields):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sma-zip", required=True)
+    ap.add_argument("--sma-zip", help="Legacy single-SMAT input")
+    ap.add_argument("--domestic-zips", nargs="+", help="Domestic/franchise T20 archives to combine")
     ap.add_argument("--ipl-zip", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--people-csv")
@@ -228,20 +229,35 @@ def main():
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    sma_raw, ipl_raw = load_deliveries(args.sma_zip), load_deliveries(args.ipl_zip)
+    domestic_paths = args.domestic_zips or ([args.sma_zip] if args.sma_zip else [])
+    if not domestic_paths:
+        ap.error("provide --domestic-zips (or legacy --sma-zip)")
+    domestic_raw = [load_deliveries(p) for p in domestic_paths]
+    ipl_raw = load_deliveries(args.ipl_zip)
     registry, display_names = load_name_registry(args.people_csv, args.names_csv)
-    sma_b, sma_dates = aggregate(sma_raw, "bat", registry)
-    sma_w, _ = aggregate(sma_raw, "bowl", registry)
     ipl_b, ipl_dates = aggregate(ipl_raw, "bat", registry)
     ipl_w, _ = aggregate(ipl_raw, "bowl", registry)
-    domestic, future_ipl = combine(sma_b, sma_w), combine(ipl_b, ipl_w)
-    sma_bounds, ipl_bounds = season_bounds(sma_dates), season_bounds(ipl_dates)
-    frame = build_frame(domestic, sma_bounds, future_ipl, ipl_bounds)
-    seasons = sorted({r["domestic_season"] for r in frame}, key=lambda s: sma_bounds.get(s, ("", ""))[1])
+    # Combine batting and bowling by player-season across sources. The shared
+    # Cricsheet ID handles most variants; unresolvable aliases remain separate.
+    domestic_b, domestic_w, domestic_dates = {}, {}, {}
+    for path, raw in zip(domestic_paths, domestic_raw):
+        comp = Path(path).name.replace("_csv2.zip", "")
+        # Competition prefix avoids merging overlapping seasons from separate
+        # leagues while retaining chronology for forward validation.
+        tagged = [{**r, "season": f"{comp}:{r.get('season','')}"} for r in raw]
+        bat, dates = aggregate(tagged, "bat", registry)
+        bowl, _ = aggregate(tagged, "bowl", registry)
+        domestic_b.update(bat)
+        domestic_w.update(bowl)
+        domestic_dates.update(dates)
+    domestic, future_ipl = combine(domestic_b, domestic_w), combine(ipl_b, ipl_w)
+    domestic_bounds, ipl_bounds = season_bounds(domestic_dates), season_bounds(ipl_dates)
+    frame = build_frame(domestic, domestic_bounds, future_ipl, ipl_bounds)
+    seasons = sorted({r["domestic_season"] for r in frame}, key=lambda s: domestic_bounds.get(s, ("", ""))[1])
     if len(seasons) < 3:
         raise SystemExit(f"Only {len(seasons)} domestic seasons have a later IPL label; need at least 3.")
     holdout = seasons[-1]
-    train = [r for r in frame if sma_bounds[r["domestic_season"]][1] < sma_bounds[holdout][1]]
+    train = [r for r in frame if domestic_bounds[r["domestic_season"]][1] < domestic_bounds[holdout][1]]
     test = [r for r in frame if r["domestic_season"] == holdout]
     if len({r["ipl_next_appearance"] for r in train}) < 2:
         raise SystemExit("Training period lacks both appearance classes; expand the training window.")
@@ -290,6 +306,8 @@ def main():
                    [pred for r, pred in zip(test, impact) if r["ipl_next_appearance"]])) if any(labels) else None,
                "feature_list": FEATURES,
                "label_definition": "next later IPL season appearance; impact=(IPL runs + 20*wickets)/matches",
+               "training_archives": [str(Path(p).name) for p in domestic_paths],
+               "label_archives": [str(Path(args.ipl_zip).name)],
                "name_matching": ("Cricsheet people/name register; ambiguous variants are not auto-merged"
                                  if registry else "exact normalized text only; unresolved aliases are treated as non-appearances"),
                "walk_forward_folds": walk_forward,
@@ -301,7 +319,7 @@ def main():
                "ipl_next_appearance", "ipl_impact_per_match", "predicted_ipl_appearance_probability",
                "predicted_ipl_impact_per_match", "predicted_expected_impact"]
     write_csv(out / "latest_season_holdout.csv", scored, columns)
-    # Fit deployable version on every historically labeled SMAT season.
+    # Fit deployable version on every historically labeled domestic/franchise season.
     full_clf, full_reg = fit_models(frame)
     joblib.dump({"appearance_model": full_clf, "impact_model": full_reg,
                  "features": FEATURES, "training_seasons": seasons,

@@ -1,13 +1,25 @@
-Dataset,Download,Matches,Date span,Use in current model,Status
-IPL,https://cricsheet.org/downloads/ipl_csv2.zip,1243,2008-04-18 to 2026-05-31,Next-season outcome labels,Downloaded to work/data
-Syed Mushtaq Ali Trophy,https://cricsheet.org/downloads/sma_csv2.zip,695,2016-01-02 to 2024-12-15,Domestic feature training; incomplete coverage,Downloaded to work/data
-Big Bash League,https://cricsheet.org/downloads/bbl_csv2.zip,662,2011-12-16 to 2026-01-25,External T20 comparison only,Downloaded to work/data
-Caribbean Premier League,https://cricsheet.org/downloads/cpl_csv2.zip,445,2013-07-30 to 2026-09-20,External T20 comparison only,Downloaded to work/data
-Pakistan Super League,https://cricsheet.org/downloads/psl_csv2.zip,357,2016-02-04 to 2026-05-03,External T20 comparison only,Downloaded to work/data
-SA20,https://cricsheet.org/downloads/sat_csv2.zip,130,2023-01-10 to 2026-01-25,External T20 comparison only,Downloaded to work/data
-International League T20,https://cricsheet.org/downloads/ilt_csv2.zip,134,2023-01-13 to 2026-01-04,External T20 comparison only,Downloaded to work/data
-Lanka Premier League,https://cricsheet.org/downloads/lpl_csv2.zip,143,2020-11-26 to 2026-08-08,External T20 comparison only,Downloaded to work/data
-Major League Cricket,https://cricsheet.org/downloads/mlc_csv2.zip,109,2023-07-13 to 2026-07-18,External T20 comparison only,Downloaded to work/data
-Men's T20 internationals,https://cricsheet.org/downloads/t20s_male_csv2.zip,3649,All available seasons,International experience cross-check only,Downloaded to work/data
-Cricsheet people register,https://cricsheet.org/register/people.csv,18698,Updated by Cricsheet,Name and ID resolution,Downloaded to work/data
-Cricsheet name variants,https://cricsheet.org/register/names.csv,8818,Updated by Cricsheet,Name and ID resolution,Downloaded to work/data
+Dataset,Download,Matches,Start date,End date,Use in pipeline,Status,Local file,Size bytes
+IPL,https://cricsheet.org/downloads/ipl_csv2.zip,1243,2008-04-18,2026-05-31,Outcome labels; 2025–26 time-forward holdout,downloaded 2026-11-07,ipl_csv2.zip,6856404
+Syed Mushtaq Ali Trophy,https://cricsheet.org/downloads/sma_csv2.zip,695,2016-01-02,2024-12-15,Model features,downloaded 2026-11-07,sma_csv2.zip,3636396
+Big Bash League,https://cricsheet.org/downloads/bbl_csv2.zip,662,2011-12-16,2026-01-25,Model features,downloaded 2026-11-07,bbl_csv2.zip,3586715
+Bangladesh Premier League,https://cricsheet.org/downloads/bpl_csv2.zip,469,2012-02-11,2026-01-23,Model features,downloaded 2026-11-07,bpl_csv2.zip,2641292
+Caribbean Premier League,https://cricsheet.org/downloads/cpl_csv2.zip,445,2013-07-30,2026-09-20,Model features,downloaded 2026-11-07,cpl_csv2.zip,2442400
+CSA T20 Challenge,https://cricsheet.org/downloads/ctc_csv2.zip,314,2012-02-15,2024-10-27,Model features,downloaded 2026-11-07,ctc_csv2.zip,1652299
+European T20 Premier League,https://cricsheet.org/downloads/etpl_male_csv2.zip,31,2026-08-26,2026-09-20,Model features,downloaded 2026-11-07,etpl_male_csv2.zip,173345
+International League T20,https://cricsheet.org/downloads/ilt_csv2.zip,134,2023-01-13,2026-01-04,Model features,downloaded 2026-11-07,ilt_csv2.zip,753944
+Ireland Interprovincial T20,https://cricsheet.org/downloads/ipt_male_csv2.zip,111,2016-05-27,2026-07-29,Model features,downloaded 2026-11-07,ipt_male_csv2.zip,586614
+Lanka Premier League,https://cricsheet.org/downloads/lpl_csv2.zip,143,2020-11-26,2026-08-08,Model features,downloaded 2026-11-07,lpl_csv2.zip,803053
+Major Clubs T20,https://cricsheet.org/downloads/mct_male_csv2.zip,121,2024-05-12,2026-09-16,Model features,downloaded 2026-11-07,mct_male_csv2.zip,624254
+Major League Cricket,https://cricsheet.org/downloads/mlc_csv2.zip,109,2023-07-13,2026-07-18,Model features,downloaded 2026-11-07,mlc_csv2.zip,612324
+Mzansi Super League,https://cricsheet.org/downloads/msl_male_csv2.zip,56,2018-11-16,2019-12-16,Model features,downloaded 2026-11-07,msl_male_csv2.zip,307565
+Nepal Premier League,https://cricsheet.org/downloads/npl_male_csv2.zip,76,2024-11-30,2026-11-03,Model features,downloaded 2026-11-07,npl_male_csv2.zip,432664
+T20 Blast,https://cricsheet.org/downloads/ntb_male_csv2.zip,1570,2014-05-16,2026-07-18,Model features,downloaded 2026-11-07,ntb_male_csv2.zip,8206337
+CSA Pro20,https://cricsheet.org/downloads/pro20_male_csv2.zip,6,2026-09-25,2026-09-29,Model features,downloaded 2026-11-07,pro20_male_csv2.zip,39684
+Pakistan Super League,https://cricsheet.org/downloads/psl_csv2.zip,357,2016-02-04,2026-05-03,Model features,downloaded 2026-11-07,psl_csv2.zip,1961068
+SA20,https://cricsheet.org/downloads/sat_csv2.zip,130,2023-01-10,2026-01-25,Model features,downloaded 2026-11-07,sat_csv2.zip,695014
+Super Smash,https://cricsheet.org/downloads/ssm_male_csv2.zip,270,2013-01-20,2026-01-31,Model features,downloaded 2026-11-07,ssm_male_csv2.zip,1438937
+Men's T20 internationals,https://cricsheet.org/downloads/t20s_male_csv2.zip,3649,2005-02-17,2026-11-01,Identity / research reference only,downloaded 2026-11-07,t20s_male_csv2.zip,12291722
+Men’s international T20s (extended archive),https://cricsheet.org/downloads/it20s_male_csv2.zip,240,2010-06-04,2024-05-26,Identity / research reference only,downloaded 2026-11-07,it20s_male_csv2.zip,795783
+ICC Men’s T20 World Cup,https://cricsheet.org/downloads/icc_mens_t20_world_cup_male_csv2.zip,230,2014-03-16,2026-03-08,Identity / research reference only,downloaded 2026-11-07,icc_mens_t20_world_cup_male_csv2.zip,1249858
+Cricsheet people register,https://cricsheet.org/register/people.csv,,,,Name and ID resolution,downloaded 2026-11-07,people_register.csv,1187398
+Cricsheet name variants,https://cricsheet.org/register/names.csv,,,,Cross-competition name resolution,downloaded 2026-11-07,name_variants.csv,162471

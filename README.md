@@ -1,64 +1,32 @@
 # SupeRR Scout · IPL 2027 auction lab
 
-A lightweight, static scouting dashboard and data preparation path for the Rajasthan Royals SupeRR Selector challenge.
+A lightweight Rajasthan Royals themed scouting dashboard and reproducible public-data research baseline. It is ready for the 8 Nov challenge pack, which is not included yet. The current model is not accurate enough to make picks by itself and does not support a 95% useful-accuracy claim.
 
-## What it does today
+## Current state
 
-- Loads one or more player-summary CSV files locally in the browser. Files stay on the user's device.
-- Filters to players age 25 or younger, using age or date of birth, and ranks a top 10 by role-aware T20 indicators, sample confidence, age upside and provisional squad fit.
-- Shows source coverage and evidence confidence beside each player, and exports the current top 10 as CSV.
-- Provides a public-source register and clearly marks the dashboard as pre-release until the proprietary pack arrives.
+- The static dashboard is in `index.html`; `outputs/superrr-scout-dashboard.html` is the same deliverable. It imports candidate CSVs locally in the browser and keeps uploaded data on the device.
+- `train_model.py` trains a two-stage model on 18 domestic/franchise T20 archives, with IPL outcomes, Cricsheet identities and chronological validation. The latest validation has 19,231 training player-season rows, 0.588 ROC-AUC, and 1/10 top-10 appearance precision. Its 96.2% raw accuracy is exactly the all-negative baseline. See `outputs/model_validation.md`.
+- `build_rr_roster_form.py` creates `outputs/rr_squad_form_2025_2026.csv`, joining the official RR 2026 squad categories with IPL 2025/2026 ball-by-ball form where identity matches. Empty cells mean unresolved or unavailable evidence.
+- `outputs/rr_auction_scenarios.md` compares RR phase performance and sets conditional role priorities if the reported RR–LSG trade happens or falls through. The rumour names no players and is not treated as a completed trade.
+- `outputs/rr_scout_model.joblib`, `outputs/holdout_metrics.json`, `outputs/latest_season_holdout.csv`, `outputs/dataset_inventory.csv` preserve the trained artifact and research output.
 
-## Important model limitation
+## Run locally
 
-This is an explainable scoring baseline, not a trained probability model. The brief is not live until 8 Nov 2026 at 10:00 IST, and the data dictionary, eligible player pool, player-level outcomes and auction labels are not yet available. No honest system can claim pinpoint accuracy without those inputs and a time-separated backtest. Do not present score values as probabilities.
-
-After the pack arrives:
-
-1. Keep the original file unchanged and review its license and data dictionary.
-2. Join on verified player identity, not name alone. Confirm dates of birth, uncapped status and role.
-3. Add all available domestic T20 seasons, IPL history and auction outcomes. Exclude any post-cutoff data from training features.
-4. Backtest by season (train on seasons before year `t`, rank candidates available in `t`, score subsequent IPL contribution) and report top-10 precision/recall, rank correlation, calibration, and uncertainty intervals.
-5. Compare with a simple role-and-age baseline; retain the ML model only if it beats the baseline consistently.
-6. Recalculate team-fit after RR's 2027 retention list, purse and overseas slots are known.
-
-## Data inputs
-
-The browser import expects a player-summary CSV with a name, age or DOB, role, uncapped status if supplied, and common batting/bowling summary fields. Recognized headings include `player`, `age`, `dob`, `team/state`, `role/specialism`, `matches`, `runs`, `balls faced`, `dismissals`, `strike rate`, `average`, `wickets`, `balls bowled`, `runs conceded`, `economy`, `dot balls`, `catches`, and `stumpings`. It accepts multiple CSV files. Do not upload proprietary files to a public web host.
-
-## Reproducible public-data baseline
-
-`train_model.py` trains a two-stage SMAT-to-next-IPL model from Cricsheet Ashwin CSV archives. It uses season-forward evaluation, a Cricsheet people/name registry join, an appearance classifier and an impact regression. The baseline is not a precision guarantee. See [the validation checkpoint](outputs/model_validation.md) for the holdout and fold results. `score_candidates.py` applies the saved model to a cleaned player-summary CSV; use its optional `--report` output to audit excluded rows. `work/data/` is the local data room for downloaded public archives and is intentionally not pushed to GitHub.
-
-Example local commands:
+Open `index.html` in a browser. There is no build step or server requirement. To retrain the broad public baseline from the included archives:
 
 ```sh
-python3 train_model.py --sma-zip work/data/sma_csv2.zip --ipl-zip work/data/ipl_csv2.zip \
-  --people-csv work/data/people.csv --names-csv work/data/names.csv --out work/model
-python3 score_candidates.py --model work/model/rr_scout_model.joblib \
-  --input candidates.csv --output work/ranked_candidates.csv --report work/eligibility_audit.json
-python3 benchmark_models.py
+python3 train_model.py --domestic-zips work/data/sma_csv2.zip work/data/bbl_csv2.zip work/data/bpl_csv2.zip work/data/cpl_csv2.zip work/data/ctc_csv2.zip work/data/etpl_male_csv2.zip work/data/ilt_csv2.zip work/data/ipt_male_csv2.zip work/data/lpl_csv2.zip work/data/mct_male_csv2.zip work/data/mlc_csv2.zip work/data/msl_male_csv2.zip work/data/npl_male_csv2.zip work/data/ntb_male_csv2.zip work/data/pro20_male_csv2.zip work/data/psl_csv2.zip work/data/sat_csv2.zip work/data/ssm_male_csv2.zip --ipl-zip work/data/ipl_csv2.zip --people-csv work/data/people.csv --names-csv work/data/names.csv --out work/model
+python3 score_candidates.py --model work/model/rr_scout_model.joblib --input candidates.csv --output work/ranked_candidates.csv --report work/eligibility_audit.json
 ```
 
-Cricsheet's experimental Ashwin CSVs are ball-by-ball, not player summaries. Aggregate them by player and season before browser upload; preserve competition and season fields and de-duplicate match/player rows. Do not mix formats or count an extra delivery as a legal ball unless the source says it is legal.
+Candidate rows need verified names/IDs, DOB/age, role, uncapped status and domestic T20 performance. Review the challenge brief and data permissions before use; keep the original pack unchanged. Do not publish the proprietary pack. Refit and evaluate against role/age baselines after adding the pack and checking the official RR 2027 retained, released and traded list.
 
-## Public sources to collect
+## Public data and attribution
 
-- [Cricsheet downloads](https://cricsheet.org/downloads/) — IPL and Syed Mushtaq Ali Trophy match data, including ball-by-ball; review [format](https://cricsheet.org/format/) and [licensing](https://cricsheet.org/register/).
-- [SMAT 2025–26 public scorecards](https://www.hycricket.in/data-2025-26/BCCI-matches/SMA-t20/) — player batting/bowling summaries.
-- [BCCI 2026–27 domestic ready reckoner](https://documents.bcci.tv/bcci/documents/1779273276961_BCCI%202026-27%20Domestic%20Season%20Ready%20Reckoner.pdf) — competition schedule and structure.
-- [IPL official statistics](https://www.iplt20.com/stats) — historical IPL results for context and validation.
-- [Rajasthan Royals squad profiles](https://www.rajasthanroyals.com/rr-players) — role and roster context; re-check after 2027 retentions.
-- [ESPNcricinfo records](https://www.espncricinfo.com/records) — independent bio and scorecard cross-checks.
+`work/data/` contains the downloaded Cricsheet Ashwin CSV archives and people/name registers. See `work/data/ATTRIBUTION.md` and `outputs/dataset_inventory.csv` for direct sources, competition coverage, intended use and ODC-BY attribution. Men's international and T20 World Cup archives are research references, not model feature inputs. The repo contains no proprietary Rajasthan Royals challenge data.
 
-## Run it
+The dashboard's RR logo and player portraits link to the official [Rajasthan Royals squad page](https://www.rajasthanroyals.com/rr-players). Current squad/trade statements and form context are linked in the validation and scenario reports.
 
-Open `index.html` in any modern browser. There is no build step or server. All ranking runs in the page and uploaded files are not sent anywhere.
+## Data boundaries
 
-## Scoring baseline
-
-The browser's direct CSV import provides a transparent provisional heuristic (78% role skill, 12% age upside, 6% provisional role fit, 4% sample reliability). For the supervised two-stage outcome model, run `score_candidates.py` with the locally trained artifact and import its output CSV; the page will then use its 100-point model score and show the learned appearance probability. Validation is weak and documented in [model_validation.md](outputs/model_validation.md). Neither score estimates a 2027 auction success probability.
-
-## Attribution
-
-Attribute Cricsheet and any other public source used in derived files according to that source's terms. This dashboard itself bundles no third-party player data.
+Cricsheet match coverage varies, identity joins are imperfect, franchise-strength differences matter, and separate league-season rows for one player are not independent observations. The trained target is next-IPL appearance and a coarse impact label, not RR purchase success or a 2027 performance. The current score is a research aid; wait for the pack and confirmed 2027 team context before publishing a named top 10.

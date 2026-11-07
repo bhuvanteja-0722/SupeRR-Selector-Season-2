@@ -1,26 +1,145 @@
 {
-  "training_rows": 3851,
+  "training_rows": 19231,
   "training_seasons": [
-    "2015/16",
-    "2017/18",
-    "2018/19",
-    "2019/20",
-    "2020/21",
-    "2021/22",
-    "2022/23",
-    "2023/24"
+    "bbl:2011/12",
+    "bpl:2011/12",
+    "ctc:2011/12",
+    "bbl:2012/13",
+    "ssm_male:2012/13",
+    "bpl:2012/13",
+    "ctc:2012/13",
+    "cpl:2013",
+    "ssm_male:2013/14",
+    "bbl:2013/14",
+    "ctc:2013/14",
+    "cpl:2014",
+    "ntb_male:2014",
+    "ctc:2014/15",
+    "bbl:2014/15",
+    "cpl:2015",
+    "ntb_male:2015",
+    "ctc:2015/16",
+    "bpl:2015/16",
+    "sma:2015/16",
+    "bbl:2015/16",
+    "psl:2015/16",
+    "ipt_male:2016",
+    "cpl:2016",
+    "ntb_male:2016",
+    "bpl:2016/17",
+    "ctc:2016/17",
+    "bbl:2016/17",
+    "psl:2016/17",
+    "ipt_male:2017",
+    "ntb_male:2017",
+    "cpl:2017",
+    "bpl:2017/18",
+    "ctc:2017/18",
+    "ssm_male:2017/18",
+    "sma:2017/18",
+    "bbl:2017/18",
+    "psl:2017/18",
+    "ipt_male:2018",
+    "ntb_male:2018",
+    "cpl:2018",
+    "msl_male:2018/19",
+    "bpl:2018/19",
+    "ssm_male:2018/19",
+    "bbl:2018/19",
+    "sma:2018/19",
+    "psl:2018/19",
+    "ctc:2018/19",
+    "ipt_male:2019",
+    "ntb_male:2019",
+    "cpl:2019",
+    "sma:2019/20",
+    "msl_male:2019/20",
+    "bpl:2019/20",
+    "ssm_male:2019/20",
+    "bbl:2019/20",
+    "psl:2019/20",
+    "ipt_male:2020",
+    "cpl:2020",
+    "ntb_male:2020",
+    "lpl:2020/21",
+    "sma:2020/21",
+    "bbl:2020/21",
+    "ssm_male:2020/21",
+    "ctc:2020/21",
+    "psl:2020/21",
+    "psl:2021",
+    "cpl:2021",
+    "ntb_male:2021",
+    "ipt_male:2021",
+    "sma:2021/22",
+    "lpl:2021/22",
+    "bbl:2021/22",
+    "ssm_male:2021/22",
+    "bpl:2021/22",
+    "psl:2021/22",
+    "ctc:2021/22",
+    "ntb_male:2022",
+    "ipt_male:2022",
+    "cpl:2022",
+    "ctc:2022/23",
+    "sma:2022/23",
+    "lpl:2022/23",
+    "bbl:2022/23",
+    "ssm_male:2022/23",
+    "sat:2022/23",
+    "ilt:2022/23",
+    "bpl:2022/23",
+    "psl:2022/23",
+    "ntb_male:2023",
+    "mlc:2023",
+    "ipt_male:2023",
+    "lpl:2023",
+    "cpl:2023",
+    "sma:2023/24",
+    "bbl:2023/24",
+    "ssm_male:2023/24",
+    "sat:2023/24",
+    "ilt:2023/24",
+    "bpl:2023/24",
+    "ctc:2023/24",
+    "psl:2023/24",
+    "mct_male:2024",
+    "lpl:2024",
+    "mlc:2024",
+    "ipt_male:2024",
+    "ntb_male:2024",
+    "cpl:2024",
+    "ctc:2024/25",
+    "sma:2024/25",
+    "npl_male:2024/25",
+    "bbl:2024/25",
+    "ssm_male:2024/25",
+    "bpl:2024/25",
+    "sat:2024/25",
+    "ilt:2024/25",
+    "psl:2025",
+    "mct_male:2025",
+    "ipt_male:2025",
+    "mlc:2025",
+    "ntb_male:2025",
+    "cpl:2025",
+    "npl_male:2025/26",
+    "ilt:2025/26",
+    "bpl:2025/26",
+    "sat:2025/26",
+    "bbl:2025/26"
   ],
-  "holdout_season": "2024/25",
-  "holdout_target_ipl_season": "2025",
-  "holdout_rows": 102,
-  "holdout_appearance_rate": 0.35294117647058826,
-  "precision_at_10_for_appearance": 0.5,
-  "accuracy_at_probability_0_5": 0.6568627450980392,
-  "naive_all_no_accuracy": 0.6470588235294117,
-  "brier_score": 0.27578951906979154,
-  "naive_prevalence_brier_score": 0.2283737024221453,
-  "roc_auc": 0.6616161616161617,
-  "regression_mae_on_appearances": 9.907263042027024,
+  "holdout_season": "ssm_male:2025/26",
+  "holdout_target_ipl_season": "2026",
+  "holdout_rows": 106,
+  "holdout_appearance_rate": 0.03773584905660377,
+  "precision_at_10_for_appearance": 0.1,
+  "accuracy_at_probability_0_5": 0.9622641509433962,
+  "naive_all_no_accuracy": 0.9622641509433962,
+  "brier_score": 0.042731304950891946,
+  "naive_prevalence_brier_score": 0.03631185475258099,
+  "roc_auc": 0.588235294117647,
+  "regression_mae_on_appearances": 10.544008576985929,
   "feature_list": [
     "log_matches",
     "log_innings",
@@ -36,49 +155,1024 @@
     "bowler"
   ],
   "label_definition": "next later IPL season appearance; impact=(IPL runs + 20*wickets)/matches",
+  "training_archives": [
+    "sma_csv2.zip",
+    "bbl_csv2.zip",
+    "bpl_csv2.zip",
+    "cpl_csv2.zip",
+    "ctc_csv2.zip",
+    "etpl_male_csv2.zip",
+    "ilt_csv2.zip",
+    "ipt_male_csv2.zip",
+    "lpl_csv2.zip",
+    "mct_male_csv2.zip",
+    "mlc_csv2.zip",
+    "msl_male_csv2.zip",
+    "npl_male_csv2.zip",
+    "ntb_male_csv2.zip",
+    "pro20_male_csv2.zip",
+    "psl_csv2.zip",
+    "sat_csv2.zip",
+    "ssm_male_csv2.zip"
+  ],
+  "label_archives": [
+    "ipl_csv2.zip"
+  ],
   "name_matching": "Cricsheet people/name register; ambiguous variants are not auto-merged",
   "walk_forward_folds": [
     {
-      "validation_season": "2020/21",
-      "target_ipl_season": "2021",
-      "rows": 574,
-      "roc_auc": 0.770266439909297,
-      "brier_score": 0.09807851074104579,
+      "validation_season": "ssm_male:2012/13",
+      "target_ipl_season": "2013",
+      "rows": 21,
+      "roc_auc": 0.75,
+      "brier_score": 0.06528059433305995,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "bpl:2012/13",
+      "target_ipl_season": "2013",
+      "rows": 131,
+      "roc_auc": 0.6402173913043478,
+      "brier_score": 0.14314982595111939,
       "precision_at_10_appearance": 0.3
     },
     {
-      "validation_season": "2021/22",
-      "target_ipl_season": "2022",
-      "rows": 577,
-      "roc_auc": 0.7402416138869341,
-      "brier_score": 0.12068722714645626,
+      "validation_season": "ctc:2012/13",
+      "target_ipl_season": "2014",
+      "rows": 99,
+      "roc_auc": 0.5629213483146067,
+      "brier_score": 0.1175668458099874,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "cpl:2013",
+      "target_ipl_season": "2014",
+      "rows": 91,
+      "roc_auc": 0.7186009538950715,
+      "brier_score": 0.13734464679126218,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ssm_male:2013/14",
+      "target_ipl_season": "2014",
+      "rows": 46,
+      "roc_auc": 0.7954545454545454,
+      "brier_score": 0.05475965510432321,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "bbl:2013/14",
+      "target_ipl_season": "2014",
+      "rows": 143,
+      "roc_auc": 0.7583050847457627,
+      "brier_score": 0.1279576734848063,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "ctc:2013/14",
+      "target_ipl_season": "2014",
+      "rows": 94,
+      "roc_auc": 0.6859756097560976,
+      "brier_score": 0.11527700735902074,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "cpl:2014",
+      "target_ipl_season": "2015",
+      "rows": 88,
+      "roc_auc": 0.805128205128205,
+      "brier_score": 0.09996500100826103,
       "precision_at_10_appearance": 0.3
     },
     {
-      "validation_season": "2022/23",
-      "target_ipl_season": "2023",
-      "rows": 386,
-      "roc_auc": 0.6752546689303905,
-      "brier_score": 0.1568442098433207,
+      "validation_season": "ntb_male:2014",
+      "target_ipl_season": "2015",
+      "rows": 320,
+      "roc_auc": 0.7027509824937478,
+      "brier_score": 0.05812090601521436,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ctc:2014/15",
+      "target_ipl_season": "2015",
+      "rows": 100,
+      "roc_auc": 0.7869142351900973,
+      "brier_score": 0.10161751587540652,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "bbl:2014/15",
+      "target_ipl_season": "2015",
+      "rows": 134,
+      "roc_auc": 0.6777597402597403,
+      "brier_score": 0.13259486906260956,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "cpl:2015",
+      "target_ipl_season": "2016",
+      "rows": 94,
+      "roc_auc": 0.7732142857142856,
+      "brier_score": 0.11455706326494537,
+      "precision_at_10_appearance": 0.5
+    },
+    {
+      "validation_season": "ntb_male:2015",
+      "target_ipl_season": "2016",
+      "rows": 316,
+      "roc_auc": 0.6254180602006689,
+      "brier_score": 0.05777389540984011,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ctc:2015/16",
+      "target_ipl_season": "2016",
+      "rows": 99,
+      "roc_auc": 0.669051878354204,
+      "brier_score": 0.10795299859905727,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "bpl:2015/16",
+      "target_ipl_season": "2016",
+      "rows": 118,
+      "roc_auc": 0.6846846846846847,
+      "brier_score": 0.07292864260025318,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "sma:2015/16",
+      "target_ipl_season": "2016",
+      "rows": 400,
+      "roc_auc": 0.6327798947559427,
+      "brier_score": 0.13799582204299196,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "bbl:2015/16",
+      "target_ipl_season": "2016",
+      "rows": 129,
+      "roc_auc": 0.7823076923076923,
+      "brier_score": 0.1390664791963669,
       "precision_at_10_appearance": 0.8
     },
     {
-      "validation_season": "2023/24",
-      "target_ipl_season": "2024",
-      "rows": 359,
-      "roc_auc": 0.7635226504394863,
-      "brier_score": 0.17768293229824694,
-      "precision_at_10_appearance": 1.0
+      "validation_season": "psl:2015/16",
+      "target_ipl_season": "2016",
+      "rows": 90,
+      "roc_auc": 0.7352537722908093,
+      "brier_score": 0.08568820279838134,
+      "precision_at_10_appearance": 0.4
     },
     {
-      "validation_season": "2024/25",
+      "validation_season": "ipt_male:2016",
+      "target_ipl_season": "2017",
+      "rows": 21,
+      "roc_auc": null,
+      "brier_score": 0.023578960451843246,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "cpl:2016",
+      "target_ipl_season": "2017",
+      "rows": 103,
+      "roc_auc": 0.7124183006535948,
+      "brier_score": 0.13503285069513116,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ntb_male:2016",
+      "target_ipl_season": "2017",
+      "rows": 330,
+      "roc_auc": 0.5987308146399055,
+      "brier_score": 0.07043575696719163,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "bpl:2016/17",
+      "target_ipl_season": "2017",
+      "rows": 128,
+      "roc_auc": 0.755608028335301,
+      "brier_score": 0.05676131560383228,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ctc:2016/17",
+      "target_ipl_season": "2017",
+      "rows": 102,
+      "roc_auc": 0.7138047138047139,
+      "brier_score": 0.052017153813181984,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "bbl:2016/17",
+      "target_ipl_season": "2017",
+      "rows": 139,
+      "roc_auc": 0.7545949625595644,
+      "brier_score": 0.1422979718735505,
+      "precision_at_10_appearance": 0.5
+    },
+    {
+      "validation_season": "psl:2016/17",
+      "target_ipl_season": "2017",
+      "rows": 88,
+      "roc_auc": 0.6148648648648648,
+      "brier_score": 0.13663839129722655,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ipt_male:2017",
+      "target_ipl_season": "2018",
+      "rows": 69,
+      "roc_auc": null,
+      "brier_score": 0.025909836463734078,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ntb_male:2017",
+      "target_ipl_season": "2018",
+      "rows": 286,
+      "roc_auc": 0.7407845456337473,
+      "brier_score": 0.06245706609570867,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "cpl:2017",
+      "target_ipl_season": "2018",
+      "rows": 99,
+      "roc_auc": 0.6995481927710844,
+      "brier_score": 0.12220722262571078,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "bpl:2017/18",
+      "target_ipl_season": "2018",
+      "rows": 152,
+      "roc_auc": 0.6993464052287581,
+      "brier_score": 0.09266124390523016,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ctc:2017/18",
+      "target_ipl_season": "2018",
+      "rows": 96,
+      "roc_auc": 0.648786717752235,
+      "brier_score": 0.09127467525745715,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ssm_male:2017/18",
+      "target_ipl_season": "2018",
+      "rows": 105,
+      "roc_auc": 0.5466472303206997,
+      "brier_score": 0.06711132920175311,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "sma:2017/18",
+      "target_ipl_season": "2018",
+      "rows": 409,
+      "roc_auc": 0.741948153967007,
+      "brier_score": 0.1278371778796829,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "bbl:2017/18",
+      "target_ipl_season": "2018",
+      "rows": 138,
+      "roc_auc": 0.7591374269005848,
+      "brier_score": 0.13245915599398317,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "psl:2017/18",
+      "target_ipl_season": "2018",
+      "rows": 111,
+      "roc_auc": 0.6848306332842415,
+      "brier_score": 0.10606175596380428,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "ipt_male:2018",
+      "target_ipl_season": "2019",
+      "rows": 50,
+      "roc_auc": null,
+      "brier_score": 0.020477528404225148,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ntb_male:2018",
+      "target_ipl_season": "2019",
+      "rows": 306,
+      "roc_auc": 0.7456043956043956,
+      "brier_score": 0.07323768418537621,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "cpl:2018",
+      "target_ipl_season": "2019",
+      "rows": 103,
+      "roc_auc": 0.6688311688311688,
+      "brier_score": 0.19714768194255822,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "msl_male:2018/19",
+      "target_ipl_season": "2019",
+      "rows": 102,
+      "roc_auc": 0.6787037037037037,
+      "brier_score": 0.10579341585274257,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "bpl:2018/19",
+      "target_ipl_season": "2019",
+      "rows": 135,
+      "roc_auc": 0.7237308146399055,
+      "brier_score": 0.08937469772759946,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "ssm_male:2018/19",
+      "target_ipl_season": "2019",
+      "rows": 106,
+      "roc_auc": 0.6262755102040817,
+      "brier_score": 0.06774023331785102,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "bbl:2018/19",
+      "target_ipl_season": "2019",
+      "rows": 149,
+      "roc_auc": 0.7237076648841354,
+      "brier_score": 0.09366357576213681,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "sma:2018/19",
+      "target_ipl_season": "2019",
+      "rows": 571,
+      "roc_auc": 0.6917183098591551,
+      "brier_score": 0.10545432879711261,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "psl:2018/19",
+      "target_ipl_season": "2019",
+      "rows": 121,
+      "roc_auc": 0.6253822629969419,
+      "brier_score": 0.0910403590264176,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ctc:2018/19",
+      "target_ipl_season": "2020/21",
+      "rows": 88,
+      "roc_auc": null,
+      "brier_score": 0.01885013214824037,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ipt_male:2019",
+      "target_ipl_season": "2020/21",
+      "rows": 45,
+      "roc_auc": null,
+      "brier_score": 0.016486938603848554,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ntb_male:2019",
+      "target_ipl_season": "2020/21",
+      "rows": 291,
+      "roc_auc": 0.737742504409171,
+      "brier_score": 0.06674339328553236,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "cpl:2019",
+      "target_ipl_season": "2020/21",
+      "rows": 106,
+      "roc_auc": 0.6409574468085106,
+      "brier_score": 0.09604810941737027,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "sma:2019/20",
+      "target_ipl_season": "2020/21",
+      "rows": 575,
+      "roc_auc": 0.6975466666666666,
+      "brier_score": 0.10886574685446668,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "msl_male:2019/20",
+      "target_ipl_season": "2020/21",
+      "rows": 97,
+      "roc_auc": 0.7271062271062272,
+      "brier_score": 0.11102339818481752,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "bpl:2019/20",
+      "target_ipl_season": "2020/21",
+      "rows": 129,
+      "roc_auc": 0.7290322580645161,
+      "brier_score": 0.04720358782717883,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ssm_male:2019/20",
+      "target_ipl_season": "2020/21",
+      "rows": 84,
+      "roc_auc": 0.963855421686747,
+      "brier_score": 0.026555643194203983,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "bbl:2019/20",
+      "target_ipl_season": "2020/21",
+      "rows": 140,
+      "roc_auc": 0.789291217257319,
+      "brier_score": 0.11886818654614777,
+      "precision_at_10_appearance": 0.8
+    },
+    {
+      "validation_season": "psl:2019/20",
+      "target_ipl_season": "2020/21",
+      "rows": 108,
+      "roc_auc": 0.6127450980392157,
+      "brier_score": 0.05754794127241668,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ipt_male:2020",
+      "target_ipl_season": "2020/21",
+      "rows": 47,
+      "roc_auc": null,
+      "brier_score": 0.017088859431717073,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "cpl:2020",
+      "target_ipl_season": "2020/21",
+      "rows": 99,
+      "roc_auc": 0.8823529411764706,
+      "brier_score": 0.09352024174823995,
+      "precision_at_10_appearance": 0.7
+    },
+    {
+      "validation_season": "ntb_male:2020",
+      "target_ipl_season": "2021",
+      "rows": 280,
+      "roc_auc": 0.708029197080292,
+      "brier_score": 0.03219537077192,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "lpl:2020/21",
+      "target_ipl_season": "2021",
+      "rows": 89,
+      "roc_auc": 0.9885057471264368,
+      "brier_score": 0.028681113312138243,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "sma:2020/21",
+      "target_ipl_season": "2021",
+      "rows": 574,
+      "roc_auc": 0.719982993197279,
+      "brier_score": 0.1030803271800315,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "bbl:2020/21",
+      "target_ipl_season": "2021",
+      "rows": 147,
+      "roc_auc": 0.8280423280423281,
+      "brier_score": 0.10763603139215791,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ssm_male:2020/21",
+      "target_ipl_season": "2021",
+      "rows": 99,
+      "roc_auc": 0.7903726708074534,
+      "brier_score": 0.06471183043456309,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ctc:2020/21",
+      "target_ipl_season": "2021",
+      "rows": 89,
+      "roc_auc": 0.8179012345679012,
+      "brier_score": 0.07549336528251702,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "psl:2020/21",
+      "target_ipl_season": "2021",
+      "rows": 100,
+      "roc_auc": 0.6589673913043478,
+      "brier_score": 0.07323029930678301,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "psl:2021",
+      "target_ipl_season": "2022",
+      "rows": 105,
+      "roc_auc": 0.49189814814814814,
+      "brier_score": 0.08303907085423365,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "cpl:2021",
+      "target_ipl_season": "2022",
+      "rows": 99,
+      "roc_auc": 0.6803840877914953,
+      "brier_score": 0.1432023384585506,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ntb_male:2021",
+      "target_ipl_season": "2022",
+      "rows": 322,
+      "roc_auc": 0.7461454940282302,
+      "brier_score": 0.0494874143610872,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ipt_male:2021",
+      "target_ipl_season": "2022",
+      "rows": 60,
+      "roc_auc": null,
+      "brier_score": 0.021304870020841433,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "sma:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 577,
+      "roc_auc": 0.7322660098522167,
+      "brier_score": 0.1237348257088781,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "lpl:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 94,
+      "roc_auc": 0.5246212121212122,
+      "brier_score": 0.06721225181234869,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "bbl:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 177,
+      "roc_auc": 0.8018382352941176,
+      "brier_score": 0.0789599222912539,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ssm_male:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 105,
+      "roc_auc": 0.6875,
+      "brier_score": 0.07647001653889413,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "bpl:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 109,
+      "roc_auc": 0.7301980198019802,
+      "brier_score": 0.06510227394546243,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "psl:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 126,
+      "roc_auc": 0.6972222222222222,
+      "brier_score": 0.04830422463502525,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ctc:2021/22",
+      "target_ipl_season": "2022",
+      "rows": 123,
+      "roc_auc": 0.7762711864406779,
+      "brier_score": 0.04538674912002117,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ntb_male:2022",
+      "target_ipl_season": "2023",
+      "rows": 306,
+      "roc_auc": 0.7279866332497912,
+      "brier_score": 0.06389200150535296,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ipt_male:2022",
+      "target_ipl_season": "2023",
+      "rows": 56,
+      "roc_auc": 0.8,
+      "brier_score": 0.02971560639474522,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "cpl:2022",
+      "target_ipl_season": "2023",
+      "rows": 102,
+      "roc_auc": 0.7554379776601998,
+      "brier_score": 0.15349962202625214,
+      "precision_at_10_appearance": 0.5
+    },
+    {
+      "validation_season": "ctc:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 116,
+      "roc_auc": 0.9391304347826087,
+      "brier_score": 0.020527906743283152,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "sma:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 386,
+      "roc_auc": 0.6719015280135823,
+      "brier_score": 0.16233976441380407,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "lpl:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 98,
+      "roc_auc": 0.6444444444444445,
+      "brier_score": 0.07805086854164495,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "bbl:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 148,
+      "roc_auc": 0.6039515042658284,
+      "brier_score": 0.0983399154615083,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ssm_male:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 97,
+      "roc_auc": 0.8157894736842105,
+      "brier_score": 0.03057919499298531,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "sat:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 108,
+      "roc_auc": 0.7311965811965813,
+      "brier_score": 0.21043608305207293,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "ilt:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 119,
+      "roc_auc": 0.6671052631578948,
+      "brier_score": 0.1592445793283336,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "bpl:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 160,
+      "roc_auc": 0.6143380429094715,
+      "brier_score": 0.07842302168872825,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "psl:2022/23",
+      "target_ipl_season": "2023",
+      "rows": 119,
+      "roc_auc": 0.5307692307692307,
+      "brier_score": 0.11513926595042166,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ntb_male:2023",
+      "target_ipl_season": "2024",
+      "rows": 311,
+      "roc_auc": 0.8055222088835534,
+      "brier_score": 0.051845099941717994,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "mlc:2023",
+      "target_ipl_season": "2024",
+      "rows": 83,
+      "roc_auc": 0.7071535022354695,
+      "brier_score": 0.20704546891454395,
+      "precision_at_10_appearance": 0.5
+    },
+    {
+      "validation_season": "ipt_male:2023",
+      "target_ipl_season": "2024",
+      "rows": 67,
+      "roc_auc": null,
+      "brier_score": 0.020682469163685168,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "lpl:2023",
+      "target_ipl_season": "2024",
+      "rows": 93,
+      "roc_auc": 0.5277777777777778,
+      "brier_score": 0.0917645162349619,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "cpl:2023",
+      "target_ipl_season": "2024",
+      "rows": 108,
+      "roc_auc": 0.6597222222222221,
+      "brier_score": 0.0962054803296256,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "sma:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 359,
+      "roc_auc": 0.7282792427315755,
+      "brier_score": 0.18821054825530958,
+      "precision_at_10_appearance": 0.9
+    },
+    {
+      "validation_season": "bbl:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 136,
+      "roc_auc": 0.6008064516129032,
+      "brier_score": 0.0818857332185482,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "ssm_male:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 102,
+      "roc_auc": 0.6618556701030928,
+      "brier_score": 0.05464657725347587,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "sat:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 99,
+      "roc_auc": 0.6066398390342053,
+      "brier_score": 0.2258846809475843,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "ilt:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 131,
+      "roc_auc": 0.682652210175146,
+      "brier_score": 0.13582635627147058,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "bpl:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 163,
+      "roc_auc": 0.6941514860977949,
+      "brier_score": 0.07588240103795665,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ctc:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 88,
+      "roc_auc": 0.7072018890200709,
+      "brier_score": 0.10613793637868954,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "psl:2023/24",
+      "target_ipl_season": "2024",
+      "rows": 109,
+      "roc_auc": 0.484593837535014,
+      "brier_score": 0.06996833421023313,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "mct_male:2024",
+      "target_ipl_season": "2025",
+      "rows": 243,
+      "roc_auc": 0.6970954356846473,
+      "brier_score": 0.02051641294144505,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "lpl:2024",
+      "target_ipl_season": "2025",
+      "rows": 84,
+      "roc_auc": 0.589041095890411,
+      "brier_score": 0.11349249952664268,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "mlc:2024",
+      "target_ipl_season": "2025",
+      "rows": 103,
+      "roc_auc": 0.6877240143369175,
+      "brier_score": 0.23361992392729933,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "ipt_male:2024",
+      "target_ipl_season": "2025",
+      "rows": 77,
+      "roc_auc": null,
+      "brier_score": 0.021254237368946265,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ntb_male:2024",
+      "target_ipl_season": "2025",
+      "rows": 313,
+      "roc_auc": 0.7049663299663299,
+      "brier_score": 0.052218051082491855,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "cpl:2024",
+      "target_ipl_season": "2025",
+      "rows": 105,
+      "roc_auc": 0.7177522349936143,
+      "brier_score": 0.1339946589798196,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ctc:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 137,
+      "roc_auc": 0.6233766233766234,
+      "brier_score": 0.07673923060655381,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "sma:2024/25",
       "target_ipl_season": "2025",
       "rows": 102,
-      "roc_auc": 0.6616161616161617,
-      "brier_score": 0.27578951906979154,
-      "precision_at_10_appearance": 0.5
+      "roc_auc": 0.6241582491582491,
+      "brier_score": 0.2810885603845364,
+      "precision_at_10_appearance": 0.7
+    },
+    {
+      "validation_season": "npl_male:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 125,
+      "roc_auc": 0.4354838709677419,
+      "brier_score": 0.027004875760248626,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "bbl:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 153,
+      "roc_auc": 0.6995169082125604,
+      "brier_score": 0.0856965386974365,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "ssm_male:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 93,
+      "roc_auc": 0.6404494382022472,
+      "brier_score": 0.04636152005695137,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "bpl:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 151,
+      "roc_auc": 0.4191780821917809,
+      "brier_score": 0.04744472579793059,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "sat:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 111,
+      "roc_auc": 0.6676691729323309,
+      "brier_score": 0.24665198722475334,
+      "precision_at_10_appearance": 0.6
+    },
+    {
+      "validation_season": "ilt:2024/25",
+      "target_ipl_season": "2025",
+      "rows": 123,
+      "roc_auc": 0.562246963562753,
+      "brier_score": 0.1336291977627462,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "psl:2025",
+      "target_ipl_season": "2026",
+      "rows": 126,
+      "roc_auc": 0.49396551724137927,
+      "brier_score": 0.07659475207880617,
+      "precision_at_10_appearance": 0.2
+    },
+    {
+      "validation_season": "mct_male:2025",
+      "target_ipl_season": "2026",
+      "rows": 234,
+      "roc_auc": 0.5947598253275109,
+      "brier_score": 0.03153001384731675,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ipt_male:2025",
+      "target_ipl_season": "2026",
+      "rows": 68,
+      "roc_auc": null,
+      "brier_score": 0.01754816912299134,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "mlc:2025",
+      "target_ipl_season": "2026",
+      "rows": 109,
+      "roc_auc": 0.7450980392156863,
+      "brier_score": 0.16585208424344824,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "ntb_male:2025",
+      "target_ipl_season": "2026",
+      "rows": 307,
+      "roc_auc": 0.7269624573378839,
+      "brier_score": 0.04677233647755333,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "cpl:2025",
+      "target_ipl_season": "2026",
+      "rows": 98,
+      "roc_auc": 0.6065891472868217,
+      "brier_score": 0.10504506715903386,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "npl_male:2025/26",
+      "target_ipl_season": "2026",
+      "rows": 135,
+      "roc_auc": 0.4328358208955224,
+      "brier_score": 0.024996573745745602,
+      "precision_at_10_appearance": 0.0
+    },
+    {
+      "validation_season": "ilt:2025/26",
+      "target_ipl_season": "2026",
+      "rows": 124,
+      "roc_auc": 0.7634085213032581,
+      "brier_score": 0.12382144990654338,
+      "precision_at_10_appearance": 0.4
+    },
+    {
+      "validation_season": "bpl:2025/26",
+      "target_ipl_season": "2026",
+      "rows": 121,
+      "roc_auc": 0.9166666666666666,
+      "brier_score": 0.021329803696015177,
+      "precision_at_10_appearance": 0.1
+    },
+    {
+      "validation_season": "sat:2025/26",
+      "target_ipl_season": "2026",
+      "rows": 101,
+      "roc_auc": 0.7072072072072072,
+      "brier_score": 0.20683452201160615,
+      "precision_at_10_appearance": 0.8
+    },
+    {
+      "validation_season": "bbl:2025/26",
+      "target_ipl_season": "2026",
+      "rows": 140,
+      "roc_auc": 0.7377347062386432,
+      "brier_score": 0.08134750242328483,
+      "precision_at_10_appearance": 0.3
+    },
+    {
+      "validation_season": "ssm_male:2025/26",
+      "target_ipl_season": "2026",
+      "rows": 106,
+      "roc_auc": 0.588235294117647,
+      "brier_score": 0.042731304950891946,
+      "precision_at_10_appearance": 0.1
     }
   ],
-  "walk_forward_mean_precision_at_10": 0.58,
-  "walk_forward_mean_auc": 0.722180306956454
+  "walk_forward_mean_precision_at_10": 0.24596774193548393,
+  "walk_forward_mean_auc": 0.6916934054316543
 }
